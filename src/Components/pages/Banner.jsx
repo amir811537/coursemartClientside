@@ -1,9 +1,9 @@
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-import img1 from "../../assets/Black and Blue Black Friday Sale Banner (1).png"
-import img2 from "../../assets/E-Commerce Facebook Ad.png"
-import img3 from "../../assets/Screenshot_1.png"
-import img4 from "../../assets/Screenshot_2.png"
+import img1 from "../../assets/digitalmarkatingcoures.jpg"
+import img2 from "../../assets/mechanic learning.jpg"
+import img3 from "../../assets/web dev card.jpg"
+import img4 from "../../assets/indiaflag.jpg"
 const Banner = () => {
   const imageStyle = {
     width: "100%", 

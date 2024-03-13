@@ -5,12 +5,10 @@ import { AiFillHome } from 'react-icons/ai';
 import { SlLogin } from 'react-icons/sl';
 import { BsCartCheck } from 'react-icons/bs';
 import { MdAddBusiness } from 'react-icons/md';
-import { HiShoppingBag } from 'react-icons/hi';
 import { CiSearch } from "react-icons/ci";
-import { FaRegUser } from "react-icons/fa";
 import { MdOutlineShoppingCart } from "react-icons/md";
 import CartcountBadge from "./CartcountBadge";
-import logo from '.././../assets/Screenshot_2-removebg-preview.png'
+import logo from '.././../assets/finallogo.png'
 
 
 
@@ -50,76 +48,7 @@ const Navbar = () => {
 
 
     return (
-        // <div className="navbar bg-red-600 ">
-        //   <div className="navbar-start">
-        //     <div className="dropdown">
-        //       <label tabIndex={0} className="btn btn-ghost lg:hidden">
-        //         <svg
-        //           xmlns="http://www.w3.org/2000/svg"
-        //           className="h-5 w-5"
-        //           fill="none"
-        //           viewBox="0 0 24 24"
-        //           stroke="currentColor"
-        //         >
-        //           <path
-        //             strokeLinecap="round"
-        //             strokeLinejoin="round"
-        //             strokeWidth="2"
-        //             d="M4 6h16M4 12h8m-8 6h16"
-        //           />
-        //         </svg>
-        //       </label>
-        //       <ul
-        //         tabIndex={0}
-        //         className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box
-        //          text-black lg:text-white w-52 dark:text-blue-600"
-        //       >
-        //         {navlinks}
-        //       </ul>
-        //     </div>
-        //    <div className="flex items-center justify-center">
-
-
-        //    <label tabIndex={0} className="btn btn-ghost">
-        //       <div className="w-full rounded">
-        //         {/* <img src="https://i.ibb.co/vqz3DZm/Screenshot4225x225.png" /> */}
-        //         <HiShoppingBag className="text-3xl"></HiShoppingBag>
-
-        //       </div>
-        //     </label>{" "}
-        //     <h1 className="text-xl">E-Bazar</h1>
-        //    </div>
-        //   </div>
-        //   <div className="navbar-center hidden lg:flex">
-        //     <ul className="menu menu-horizontal px-1 text-black lg:text-white">
-        //       {navlinks}
-        //     </ul>
-        //   </div>
-        //   <div className="navbar-end">
-        //     <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-        //       <div className="w-10 rounded-full">
-        //         {user ? (
-        //           <img src={user.photoURL} />
-        //         ) : (
-        //           <img src="https://i.ibb.co/gjNbZy2/user.png" />
-        //         )}
-        //       </div>
-        //     </label>
-        //     {console.log("user===========>", user)}
-        //     {user ? (
-        //       <button className="text-white" onClick={handelsingout}>
-        //         Sign Out
-        //       </button>
-        //     ) : (
-        //       <Link to="/login">
-        //         <button className="text-white">Login</button>
-        //       </Link>
-        //     )}
-        //   </div>
-
-        // </div>
-
-
+      
         <div className="container mx-auto">
          <div className="hidden lg:block">
 
@@ -135,7 +64,7 @@ const Navbar = () => {
                     <CiSearch className="absolute top-0 right-0 mt-4 mr-5 text-gray-500" size={20} />
 
                 </div>
-                <div className="flex gap-4 ">
+                <div className="flex mr-[70px] gap-4 ">
                     <div className="icon__wrapper relative">
                     <MdOutlineShoppingCart />
                     <CartcountBadge size="w-[25px] h-[25px]"/>
@@ -146,7 +75,7 @@ const Navbar = () => {
           <img alt="Tailwind CSS Navbar component" src={user? user.photoURL :"https://i.ibb.co/gjNbZy2/user.png"} />
         </div>
       </div>
-      <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+      <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-[150px]">
         <li>
           <a className="justify-between">
             Profile

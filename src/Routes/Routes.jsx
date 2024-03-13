@@ -12,6 +12,7 @@ import Singelbranddata from "../Components/pages/Singelbranddata";
 import PrivateRoute from "./PrivateRoute";
 import Detailsproduct from "../Components/pages/Detailsproduct";
 import Singelcard from "../Components/pages/Singelcard";
+import Dashboard from "../Layouts/Dashboard";
 
 const router=createBrowserRouter([
     {
@@ -58,6 +59,17 @@ const router=createBrowserRouter([
                 loader:()=>fetch('https://electronics-bazar-server.vercel.app/products')
             },
             
+        ]
+    },
+    {
+        path:'dashboard',
+        element:<Dashboard></Dashboard>,
+        children:[
+{
+    path:'cart',
+    element:<MyCart></MyCart>
+}
+
         ]
     }
 ]);
