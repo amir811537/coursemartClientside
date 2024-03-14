@@ -8,7 +8,7 @@ const Alldata = () => {
 
   const getData = async () => {
     try {
-      const response = await axios.get("https://electronics-bazar-server.vercel.app/products");
+      const response = await axios.get("http://localhost:5000/courses");
       setProducts(response.data);
     } catch (error) {
       console.log("error in data fetching", error);

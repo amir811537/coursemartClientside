@@ -10,7 +10,6 @@ const Dashboard = () => {
 
 <li> <NavLink to="/dashboard/cart">My Cart</NavLink> </li>
 <li> <NavLink to="/dashboard/userHome">User Home</NavLink> </li>
-<li> <NavLink to="/dashboard/AddProduct">Add Products</NavLink> </li>
 
 </ul>
 </div>

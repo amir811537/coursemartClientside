@@ -1,162 +1,137 @@
 import axios from "axios";
+import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
-
 const AddProduct = () => {
-  const handelAddproduct = (e) => {
-    e.preventDefault();
-    const form = new FormData(e.currentTarget);
-    const photourl = form.get("imgage");
-    const name = form.get("name");
-    const brandname = form.get("Brandname").toLowerCase();
+  const { register, handleSubmit, formState: { errors } } = useForm();
 
-    const type = form.get("type");
-    const price = form.get("price");
-
-    const rating = form.get("rating");
-
-    const product = { photourl, name, brandname, type, price, rating };
+  const onSubmit = (data) => {
     axios
-      .post("https://electronics-bazar-server.vercel.app/products", product)
+      .post("http://localhost:5000/courses", data) 
       .then((res) => {
         console.log("add====>", res.data);
-        if(res.data.insertedId){
+        if (res.data.insertedId) {
           Swal.fire(
             'Good job!',
-            'Product added successfully!',
+            'Course added successfully!',
             'success'
           )
         }
       })
-      .catch((err) => console.log(err));
-// fetch('https://electronics-bazar-server.vercel.app/products',{
-//   method:"POST",
-//   headers:{
-//     "Content-Type":"application/json",
-
-//   },
-//   body:JSON.stringify(product),
-
-// })
-// .then((res)=>res.json())
-// .then((data)=>{
-//   console.log(data)
-// })
-
+      .catch((err) => {
+        console.error("Error adding course:", err);
+      });
+    // console.log(data)
   };
+  
 
   return (
-    <div className="bg-cover bg-center min-h-screen flex justify-center items-center bg-image">
-      <div className="flex justify-center items-center h-[100vh] ">
-        <form onSubmit={handelAddproduct}>
+    <div>
+      <h1 className="text-xl lg:text-3xl text-center">Add a Course</h1>
+      <div className="flex-1 p-5 justify-between items-center">
+        <form onSubmit={handleSubmit(onSubmit)}>
           <div className="grid md:grid-cols-2 md:gap-6">
-            <div className="relative z-0 w-full mb-6 group">
-              <input
-                type="text"
-                name="imgage"
-                id=""
-                className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent 
-         border-0 border-b-2 border-gray-300 appearance-none dark:text-white
-          dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                placeholder=""
-                required
-              />
-              <label
-                htmlFor="floating_email"
-                className="peer-focus:font-medium absolute
-          text-sm text-gray-500 dark:text-gray-400 duration-300 
-          transhtmlForm -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0
-           peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100
-            peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-              >
-                Enter your photourl
-              </label>
-            </div>
-            <div className="relative z-0 w-full mb-6 group">
-              <input
-                type="text"
-                name="name"
-                id="floating_company"
+  <div className="relative z-0 w-full mb-6 group">
+    <input
+      type="text"
+      {...register("imgage", { required: true })}
+      className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+      placeholder=""
+    />
+    {errors.imgage && <span className="text-red-500">This field is required</span>}
+    <label
+      htmlFor="floating_email"
+      className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transhtmlForm -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+    >
+      Enter your photourl
+    </label>
+  </div>
+  <div className="relative z-0 w-full mb-6 group">
+    <input
+      type="text"
+      {...register("name", { required: true })}
+      className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+      placeholder=" "
+    />
+    {errors.name && <span className="text-red-500">This field is required</span>}
+    <label
+      htmlFor="floating_company"
+      className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transhtmlForm -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+    >
+      Course Name
+    </label>
+  </div>
+  <div className="relative z-0 w-full mb-6 group">
+    <div className="relative">
+      <select
+        {...register("category", { required: true })}
+        className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+      >
+        <option value="" disabled selected>
+          Course category
+        </option>
+        <option value="web_development">Web Development</option>
+        <option value="digital_marketing">Digital Marketing</option>
+        <option value="graphic_design">Graphic Design</option>
+        <option value="3D_animation">3D Animation</option>
+        {/* <!-- Add more options as needed --> */}
+      </select>
+      {errors.type && <span className="text-red-500">This field is required</span>}
+      <label
+        htmlFor="floating_company"
+        className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+      ></label>
+    </div>
+  </div>
+  <div className="relative z-0 w-full mb-6 group">
+    <div className="relative">
+      <select
+        {...register("type", { required: true })}
+        className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+      >
+        <option value="" disabled selected>
+          Course Type
+        </option>
+        <option value="online">Online</option>
+        <option value="offline">Offline</option>
+        {/* <!-- Add more options as needed --> */}
+      </select>
+      {errors.type && <span className="text-red-500">This field is required</span>}
+      <label
+        htmlFor="floating_company"
+        className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+      ></label>
+    </div>
+  </div>
+  <div className="relative z-0 w-full mb-6 group">
+    <input
+      type="number"
+      {...register("price", { required: true })}
+      className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+      placeholder=" "
+    />
+    {errors.price && <span className="text-red-500">This field is required</span>}
+    <label
+      htmlFor="floating_company"
+      className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transhtmlForm -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+    >
+      Price
+    </label>
+  </div>
+  <div className="relative z-0 w-full mb-6 group">
+              <select
+                {...register("rating", { required: true })}
                 className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                placeholder=" "
-                required
-              />
-              <label
-                htmlFor="floating_company"
-                className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transhtmlForm -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
               >
-                Name
-              </label>
-            </div>
-            <div className="relative z-0 w-full mb-6 group">
-              <input
-                type="text"
-                name="Brandname"
-                id="floating_company"
-                className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                placeholder=" "
-                required
-              />
-              <label
-                htmlFor="floating_company"
-                className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transhtmlForm -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-              >
-                Brand Name
-              </label>
-            </div>
-            <div className="relative z-0 w-full mb-6 group">
-              <div className="relative">
-                <select
-                  name="type"
-                  id="floating_company"
-                  className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0
-      border-b-2 border-gray-300 appearance-none
-       dark:text-white dark:border-gray-600 dark:focus:border-blue-500
-        focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                  required
-                >
-                  <option selected disabled>
-                    Type
-                  </option>
-                  <option value="Phone">Phone</option>
-                  <option value="Computer">Computer</option>
-                  <option value="Headphone">Headphone</option>
-                  <option value="Laptop">Laptop</option>
-                  <option value="Smart_Watch">Smart_Watch</option>
-                  <option value="Tab">Tab</option>
-                  {/* <!-- Add more options as needed --> */}
-                </select>
-                <label
-                  htmlFor="floating_company"
-                  className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-                ></label>
-              </div>
-            </div>
-
-            <div className="relative z-0 w-full mb-6 group">
-              <input
-                type="text"
-                name="price"
-                id="floating_company"
-                className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                placeholder=" "
-                required
-              />
-              <label
-                htmlFor="floating_company"
-                className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transhtmlForm -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-              >
-                Price
-              </label>
-            </div>
-            <div className="relative z-0 w-full mb-6 group">
-              <input
-                type="text"
-                name="rating"
-                id="floating_company"
-                className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                placeholder=" "
-                required
-              />
+                <option value="" disabled selected>
+                  Select Rating
+                </option>
+                <option value="1">1 star</option>
+                <option value="2">2 stars</option>
+                <option value="3">3 stars</option>
+                <option value="4">4 stars</option>
+                <option value="5">5 stars</option>
+              </select>
+              {errors.rating && <span className="text-red-500">This field is required</span>}
               <label
                 htmlFor="floating_company"
                 className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transhtmlForm -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
@@ -165,6 +140,9 @@ const AddProduct = () => {
               </label>
             </div>
           </div>
+
+            {/* Other input fields go here */}
+          
           <div className="flex justify-center items-center">
             <button
               type="submit"
