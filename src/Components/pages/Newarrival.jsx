@@ -18,7 +18,7 @@ const Newarrival = () => {
   
     const getData = async () => {
       try {
-        const response = await axios.get("https://electronics-bazar-server.vercel.app/products");
+        const response = await axios.get("http://localhost:5000/courses");
         setProducts(response.data);
       } catch (error) {
         console.log("error in data fetching", error);
@@ -37,7 +37,7 @@ const Newarrival = () => {
           {products.map(product => (
               <SwiperSlide key={product._id}>
                   <div className="flex flex-col justify-center items-center">
-                      <img className="w-1/2" src={product.photourl} alt={product.name} />
+                      <img className="w-1/2" src={product.imgage} alt={product.name} />
                       <p>{product.name}</p>
                       <Link className="flex items-center gap-2 justify-between" to={`/products/${product._id}`}>
             <button className="bg-orange-500  border-orange-500 text-sm p-1 border text-white rounded-3xl">৳{product.price}</button>

@@ -10,7 +10,7 @@ const MyCartcard = ({ singelproduct }) => {
     AOS.init();
   }, []);
 
-  const {_id, photourl, name, price } = singelproduct;
+  const {_id, imgage, category, name, price, rating } = singelproduct;
   const handeldelete =(_id)=>{
     Swal.fire({
         title: 'Are you sure?',
@@ -59,7 +59,7 @@ console.log(_id)
         <div className="flex flex-col md:flex-row border-b border-gray-400 py-4">
           <div className="flex-shrink-0">
             <img
-              src={photourl}
+              src={imgage}
               alt="Product image"
               className="w-32 h-32 object-cover"
             />

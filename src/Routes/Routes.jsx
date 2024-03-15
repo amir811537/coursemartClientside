@@ -56,7 +56,7 @@ const router=createBrowserRouter([
             {
                 path:'/products/:id',
                 element:<PrivateRoute><Detailsproduct></Detailsproduct></PrivateRoute>,
-                loader:()=>fetch('https://electronics-bazar-server.vercel.app/products')
+                loader:()=>fetch('http://localhost:5000/courses')
             },
             
         ]
@@ -66,7 +66,7 @@ const router=createBrowserRouter([
         element:<Dashboard></Dashboard>,
         children:[
 {
-    path:'cart',
+    path:'myCart',
     element:<MyCart></MyCart>
 }
 
