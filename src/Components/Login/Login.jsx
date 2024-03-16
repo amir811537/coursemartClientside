@@ -1,4 +1,4 @@
-import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
+import { Link,  useLocation, useNavigate } from "react-router-dom";
 import { FcGoogle } from 'react-icons/fc';
 import { useContext } from "react";
 import { AuthContext } from "../../Authprovider/Authprovider";
@@ -38,7 +38,7 @@ const validatePassword = (password) => {
     const form = new FormData(e.currentTarget);
     const email = form.get("email");
     const password = form.get("password");
-    console.log(email, password);
+    // console.log(email, password);
    
     if (!validatePassword(password)) {
       Swal.fire({
@@ -51,10 +51,6 @@ const validatePassword = (password) => {
       return;
     }
   
-
-
-    
-
     signuprg(email, password)
       .then((result) => {
         console.log(result);
@@ -184,7 +180,7 @@ const validatePassword = (password) => {
               </button>
 
               <p className="mt-6 flex justify-center font-sans text-sm font-light leading-normal text-inherit antialiased">
-                Don't have an account?
+                Dont have an account?
                 <Link className="font-bold text-[#ff5a1D]" to="/register">
                  <p className="pl-2"> Register please!!</p>
                 </Link>

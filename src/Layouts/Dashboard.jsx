@@ -1,5 +1,7 @@
-import { NavLink, Outlet } from "react-router-dom";
-
+import {  NavLink, Outlet } from "react-router-dom";
+import { FaShoppingCart } from "react-icons/fa";
+import { FaUserAlt } from "react-icons/fa";
+import { FaHome } from "react-icons/fa";
 const Dashboard = () => {
     return (
 <div className="flex">
@@ -7,9 +9,15 @@ const Dashboard = () => {
 <div className="w-64 min-h-full bg-orange-500">
 
 <ul className="menu p-4">
+<li>
+          <NavLink className="text-white" to="/dashboard/profile">
+          <FaUserAlt />  Profile
+            <span className="badge">New</span>
+          </NavLink>
+        </li>
+<li> <NavLink className="text-white" to="/dashboard/myCart"><FaShoppingCart /> My Cart</NavLink> </li>
+<li> <NavLink className="text-white" to="/dashboard/userHome"> <FaHome /> User Home</NavLink> </li>
 
-<li> <NavLink to="/dashboard/cart">My Cart</NavLink> </li>
-<li> <NavLink to="/dashboard/userHome">User Home</NavLink> </li>
 
 </ul>
 </div>

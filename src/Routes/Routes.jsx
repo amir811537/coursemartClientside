@@ -13,6 +13,7 @@ import PrivateRoute from "./PrivateRoute";
 import Detailsproduct from "../Components/pages/Detailsproduct";
 import Singelcard from "../Components/pages/Singelcard";
 import Dashboard from "../Layouts/Dashboard";
+import Profile from "../Components/Dashboard/Profile/Profile";
 
 const router=createBrowserRouter([
     {
@@ -68,8 +69,11 @@ const router=createBrowserRouter([
 {
     path:'myCart',
     element:<MyCart></MyCart>
+},
+{
+    path:'profile',
+    element:<Profile></Profile>
 }
-
         ]
     }
 ]);

@@ -2,6 +2,7 @@ import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../Authprovider/Authprovider";
 import MyCartcard from "./MyCartcard";
+import { ImSad } from "react-icons/im";
 
 const MyCart = () => {
     const [product,setProduct]=useState([]);
@@ -17,7 +18,7 @@ const MyCart = () => {
       
         
         try {
-            const res=await axios.get(`https://electronics-bazar-server.vercel.app/userProduct/${user?.user?.email}`,)
+            const res=await axios.get(`http://localhost:5000/user/${user?.user?.email}`,)
            setProduct(res.data)
             
         } catch (error) {
@@ -27,7 +28,18 @@ const MyCart = () => {
     return (
         <div className="grid mx-6 gap-5 my-10 grid-cols-1 md:grid-cols-3 lg:grid-cols-2">
         
-            {product.length>0? product.map(singelproduct  =><MyCartcard key={singelproduct.ID} singelproduct={singelproduct}></MyCartcard>):<h1>Sorry No Data Found!</h1>
+            {product.length>0? product.map(singelproduct  =><MyCartcard key={singelproduct.ID} singelproduct={singelproduct}></MyCartcard>):<>
+            
+            
+            <div className="flex flex-col items-center justify-center mx-auto">
+            
+            <ImSad className="text-5xl text-red-600" />
+            <h1 className="text-center">Sorry No Data Found!</h1>
+                
+                </div>
+                
+                
+                </>
    
 }
 
