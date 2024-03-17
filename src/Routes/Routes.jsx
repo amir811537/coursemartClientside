@@ -14,6 +14,7 @@ import Detailsproduct from "../Components/pages/Detailsproduct";
 import Singelcard from "../Components/pages/Singelcard";
 import Dashboard from "../Layouts/Dashboard";
 import Profile from "../Components/Dashboard/Profile/Profile";
+import UpdateProfileInfo from "../Components/Dashboard/Profile/UpdateProfileInfo";
 
 const router=createBrowserRouter([
     {
@@ -73,6 +74,11 @@ const router=createBrowserRouter([
 {
     path:'profile',
     element:<Profile></Profile>
+},
+{
+    path:'updateprofileInfo/:id',
+    element:<UpdateProfileInfo></UpdateProfileInfo>,
+    loader:()=>fetch('http://localhost:5000/profileInfo')
 }
         ]
     }

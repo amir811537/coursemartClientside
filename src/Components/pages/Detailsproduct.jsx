@@ -29,7 +29,7 @@ const Detailsproduct = () => {
   }
   console.log("================>",payload)
   try {
-    const response=await axios.post('https://electronics-bazar-server.vercel.app/user',payload);
+    const response=await axios.post('http://localhost:5000/user',payload);
     console.log(response?.data)
     if(response?.data?.insertedId){
       Swal.fire(

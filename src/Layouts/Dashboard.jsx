@@ -6,7 +6,7 @@ const Dashboard = () => {
     return (
 <div className="flex">
     {/* dashboard sidebar */}
-<div className="w-64 min-h-full bg-orange-500">
+<div className="w-64 min-h-full max-h-[100vh] bg-orange-500">
 
 <ul className="menu p-4">
 <li>
