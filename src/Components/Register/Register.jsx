@@ -1,5 +1,6 @@
+/* eslint-disable no-unused-vars */
 import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Authprovider/Authprovider";
 import Swal from "sweetalert2";
 
@@ -7,6 +8,7 @@ const Register = () => {
  
   const {createUser}=useContext(AuthContext)
 
+  const navigate = useNavigate();
 
   const validatePassword = (password) => {
     // Password must be at least 6 characters long and contain at least 1 capital letter
@@ -20,7 +22,7 @@ const Register = () => {
         const email = form.get("email");
         const password = form.get("password");
         const name = form.get("name");
-    console.log(name,email,password)
+    // console.log(name,email,password)
 
 
     if (!validatePassword(password)) {
@@ -39,10 +41,11 @@ const Register = () => {
         console.log(result);
         Swal.fire({
           icon: "success",
-          title: "Registration successful",
+          title: "Registration successful plase login",
           showConfirmButton: false,
           timer: 3000,
         });
+        navigate('/login')
       })
       .catch((error) => {
         console.error(error);

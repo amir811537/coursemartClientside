@@ -1,45 +1,56 @@
-import { Link,  useLocation, useNavigate } from "react-router-dom";
-import { FcGoogle } from 'react-icons/fc';
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { FcGoogle } from "react-icons/fc";
 import { useContext } from "react";
 import { AuthContext } from "../../Authprovider/Authprovider";
 import Swal from "sweetalert2";
+import axios from "axios";
 
 const Login = () => {
-
-  const {signuprg,googleSignin}=useContext(AuthContext);
-  const location =useLocation();
-  const navigate= useNavigate();
-
-
+  const { signuprg, googleSignin, user } = useContext(AuthContext);
+  const location = useLocation();
+  const navigate = useNavigate();
 
   const handelGoogle = () => {
-    googleSignin().then((result) => {
-      console.log(result);
-      Swal.fire({
-        icon: "success",
-        title: "Login success",
-        showConfirmButton: false,
-        timer: 3000,
-      });
-      navigate(location?.state ? location.state : "/");
+    googleSignin()
+    .then((result) => {
+      const userEmail = result?.user?.email;
+      const userName = result?.user?.displayName;
 
+      const userData = {
+        email: userEmail,
+        name: userName,
+      };
+
+      axios
+        .post(`http://localhost:5000/profileInfo`, userData)
+        .then(() => {
+          Swal.fire({
+            icon: "success",
+            title: "Login success",
+            showConfirmButton: false,
+            timer: 3000,
+          });
+          navigate(location?.state ? location.state : "/");
+        })
+        .catch((error) => {
+          console.error("Error posting user data:", error);
+          // Handle error
+        });
     });
-};
+  };
 
-
-
-const validatePassword = (password) => {
-  // Password must be at least 6 characters long and contain at least 1 capital letter
-  const passwordRegex = /^(?=.*[A-Z])(?=.*[!@#$%^&*]).{6,}$/;
-      return passwordRegex.test(password);
-};
+  const validatePassword = (password) => {
+    // Password must be at least 6 characters long and contain at least 1 capital letter
+    const passwordRegex = /^(?=.*[A-Z])(?=.*[!@#$%^&*]).{6,}$/;
+    return passwordRegex.test(password);
+  };
   const handelLogin = (e) => {
     e.preventDefault();
     const form = new FormData(e.currentTarget);
     const email = form.get("email");
     const password = form.get("password");
     // console.log(email, password);
-   
+
     if (!validatePassword(password)) {
       Swal.fire({
         icon: "error",
@@ -50,19 +61,31 @@ const validatePassword = (password) => {
       });
       return;
     }
-  
-    signuprg(email, password)
-      .then((result) => {
-        console.log(result);
-        Swal.fire({
-          icon: "success",
-          title: "Login success",
-          showConfirmButton: false,
-          timer: 3000,
-        });
 
-        // navigate after log in
-        navigate(location?.state ? location.state : "/");
+    signuprg(email, password)
+      .then((result) => {const userEmail = result?.user?.email;
+        const userName = result?user?.displayName:"update name plase";
+  
+        const userData = {
+          email: userEmail,
+          name: userName,
+        };
+  
+        axios
+          .post(`http://localhost:5000/profileInfo`, userData)
+          .then(() => {
+            Swal.fire({
+              icon: "success",
+              title: "Login success",
+              showConfirmButton: false,
+              timer: 3000,
+            });
+            navigate(location?.state ? location.state : "/");
+          })
+          .catch((error) => {
+            console.error("Error posting user data:", error);
+            // Handle error
+          });
       })
       .catch((error) => {
         console.error(error);
@@ -73,8 +96,6 @@ const validatePassword = (password) => {
           timer: 3000,
         });
       });
-
-
   };
 
   return (
@@ -97,7 +118,8 @@ const validatePassword = (password) => {
                   className="peer  h-full w-full rounded-md border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-3 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-pink-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
                   placeholder=" "
                 />
-                <label className="before:content[' '] after:content[' ']
+                <label
+                  className="before:content[' '] after:content[' ']
                  pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px]
                   font-normal leading-tight text-blue-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] 
                   before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t
@@ -111,7 +133,8 @@ const validatePassword = (password) => {
                         peer-focus:before:border-l-2 peer-focus:before:!border-pink-500 peer-focus:after:border-t-2
                          peer-focus:after:border-r-2 peer-focus:after:!border-pink-500 peer-disabled:text-transparent 
                          peer-disabled:before:border-transparent peer-disabled:after:border-transparent
-                          peer-disabled:peer-placeholder-shown:text-blue-gray-500">
+                          peer-disabled:peer-placeholder-shown:text-blue-gray-500"
+                >
                   Email
                 </label>
               </div>
@@ -175,14 +198,19 @@ const validatePassword = (password) => {
                 Sign In
               </button>
 
-              <button onClick={handelGoogle} className="block mx-auto my-3 select-none rounded-lg bg-gradient-to-tr from-[#ff5a1D] to-pink-400 py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-pink-500/20 transition-all hover:shadow-lg hover:shadow-pink-500/40 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none">
-              <p className="flex items-center gap-3"><FcGoogle className="text-2xl"></FcGoogle>Google Login</p>
+              <button
+                onClick={handelGoogle}
+                className="block mx-auto my-3 select-none rounded-lg bg-gradient-to-tr from-[#ff5a1D] to-pink-400 py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-pink-500/20 transition-all hover:shadow-lg hover:shadow-pink-500/40 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+              >
+                <p className="flex items-center gap-3">
+                  <FcGoogle className="text-2xl"></FcGoogle>Google Login
+                </p>
               </button>
 
               <p className="mt-6 flex justify-center font-sans text-sm font-light leading-normal text-inherit antialiased">
                 Dont have an account?
                 <Link className="font-bold text-[#ff5a1D]" to="/register">
-                 <p className="pl-2"> Register please!!</p>
+                  <p className="pl-2"> Register please!!</p>
                 </Link>
               </p>
             </div>

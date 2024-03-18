@@ -9,13 +9,11 @@ const Profile = () => {
     const {user} = useContext(AuthContext);
     const [userData, setUserData] = useState([]);
 
-    useEffect(() => {
-        userInfo();
-    }, [user]);
+  
 
     const userInfo = async () => {
         try {
-            const res = await axios.get(`http://localhost:5000/profileInfo/${user?.user?.email}`);
+            const res = await axios.get(`http://localhost:5000/profileInfo/${user?.email}`);
             setUserData(res.data);
             setLoading(false);
         } catch (error) {
@@ -23,13 +21,15 @@ const Profile = () => {
             setLoading(false); 
         }
     };
-
+    useEffect(() => {
+        userInfo();
+    }, [user]);
 
   console.log("thsi is user data ",userData)
 
     const handleUpdateInfo = () => {
         // Pass user information as state during navigation
-        navigate(`/dashboard/updateprofileInfo/${userData._id}`);
+        navigate(`/dashboard/updateprofileInfo/${userData[0]._id}`,{ state: userData[0] });
     };
 
     return (
@@ -40,7 +40,7 @@ const Profile = () => {
                 <div className="">
                     <div className="bg-white shadow-xl rounded-lg py-3">
                         <div className="photo-wrapper p-2">
-                            <img className="w-32 h-32 rounded-full mx-auto" src={user.photoURL?user.photoURL:""} alt="John Doe"/>
+                            <img className="w-32 h-32 rounded-full mx-auto" src={user.photoURL?user.photoURL:userData[0].userimg} alt="John Doe"/>
                         </div>
                         <div className="p-2 text-center">
                             <h3 className="text-center text-xl text-gray-900 font-medium leading-8">name</h3>
@@ -54,16 +54,16 @@ const Profile = () => {
                                 </div>
                                 <div className="flex items-center mb-2">
                                     <div className="w-1/3 text-gray-500 font-semibold">Address</div>
-                                    <div className="w-2/3">address here </div>
+                                    <div className="w-2/3">{userData[0].address} </div>
                                 </div>
                            
                                 <div className="flex items-center mb-2">
                                     <div className="w-1/3 text-gray-500 font-semibold">Mobile</div>
-                                    <div className="w-2/3">user mobile no</div>
+                                    <div className="w-2/3">{userData[0].mobile}</div>
                                 </div>
                                 <div className="flex items-center mb-2">
                                     <div className="w-1/3 text-gray-500 font-semibold">Add social link</div>
-                                    <div className="w-2/3">facebook/github</div>
+                                    <div className="w-2/3">{userData[0].sociallink}</div>
                                 </div>
                             </div>
                             <button onClick={handleUpdateInfo} className="underline text-blue-600">

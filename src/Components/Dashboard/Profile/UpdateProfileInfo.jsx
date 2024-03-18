@@ -1,11 +1,10 @@
-import { useLoaderData } from "react-router-dom";
 import  { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import axios from "axios";
 import { AuthContext } from "../../../Authprovider/Authprovider";
-
+import { useLocation } from "react-router-dom";
 const image_hostion_api = "https://api.imgbb.com/1/upload?key=1d6fdf8c502424c419510b9f0a67a7f8";
 
 
@@ -14,18 +13,19 @@ const UpdateProfileInfo = () => {
 
     const {user}=useContext(AuthContext)
 
-const singleProfileInfo=useLoaderData()
-
+// const singleProfileInfo=useLoaderData()
+const location = useLocation();
+const singleProfileInfo = location.state;
 const navigate = useNavigate();
 const [loading, setLoading] = useState(true);
+const { name,mobile,sociallink,address } = singleProfileInfo;
 
 useEffect(() => {
   // Use userInformation
-  console.log("User Information:", singleProfileInfo);
+  // console.log("User Information:", singleProfileInfo);
   setLoading(false);
 }, []);
 
-const { _id,name,mobile,sociallink,address } = singleProfileInfo;
 
 
 const {
@@ -38,24 +38,30 @@ const {
 
 
 const onSubmit = async (data) => {
-  console.log(data)
-
   try {
-
     const imageFile = { image: data.image[0] };
-    const res = await axios.post(image_hostion_api, imageFile, {
+    const imageUploadRes = await axios.post(image_hostion_api, imageFile, {
       headers: {
         'Content-Type': 'multipart/form-data'
       }
     });
 
-    if (res.data.success) {
-  
+    if (imageUploadRes.data.success) {
+      const profileUpdates = {
+        name: data.name,
+        email: data.email,
+        address: data.address,
+        mobile: data.mobile,
+        sociallink: data.sociallink,
+        userimg: imageUploadRes.data.data.display_url
+        // Add other fields as needed
+        // Assuming you have stored the user's ID in singleProfileInfo._id
+      };
 
-      const userRes = await axios.post(`http://localhost:5000/profileInfo`, data);
-    //   console.log(data);
+      const patchRes = await axios.patch(`http://localhost:5000/profileInfo/${singleProfileInfo._id}`, profileUpdates);
+      console.log("============>",patchRes)
 
-      if (userRes.data) {
+      if (patchRes.data) {
         Swal.fire({
           position: "top-center",
           icon: "success",
@@ -66,8 +72,6 @@ const onSubmit = async (data) => {
         navigate('/dashboard/profile')
       }
     }
-
-    console.log(data);
   } catch (error) {
     console.log(error);
   }
@@ -123,6 +127,7 @@ return (
                       className="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 dark:text-white border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                       name="name"
                       required
+                      defaultValue={name}
                       type="text"
                       placeholder="Enter Your Name..."
                     />
@@ -158,6 +163,7 @@ disabled
                       className="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 dark:text-white border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                       name="address"
                       required
+                      defaultValue={address}
                       type="text"
                       placeholder="Enter Your address"
                     />
@@ -175,6 +181,7 @@ disabled
                       className="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 dark:text-white border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                       name="mobile"
                       required
+                      defaultValue={mobile}
                       type="number"
                       placeholder="Enter Your mobile num"
                     />
@@ -191,6 +198,7 @@ disabled
                       className="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 dark:text-white border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                       name="sociallink"
                       required
+                      defaultValue={sociallink}
                       type="text"
                       placeholder="Enter Your social link"
                     />

@@ -11,7 +11,6 @@ import Updateproduct from "../Components/pages/Updateproduct";
 import Singelbranddata from "../Components/pages/Singelbranddata";
 import PrivateRoute from "./PrivateRoute";
 import Detailsproduct from "../Components/pages/Detailsproduct";
-import Singelcard from "../Components/pages/Singelcard";
 import Dashboard from "../Layouts/Dashboard";
 import Profile from "../Components/Dashboard/Profile/Profile";
 import UpdateProfileInfo from "../Components/Dashboard/Profile/UpdateProfileInfo";
