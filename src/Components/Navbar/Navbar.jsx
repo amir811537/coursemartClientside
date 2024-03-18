@@ -38,6 +38,9 @@ const Navbar = () => {
                 <NavLink to="/myCart"> <BsCartCheck></BsCartCheck> My Cart</NavLink>
             </li>
             <li>
+                <NavLink to="/alldata"> <BsCartCheck></BsCartCheck>All courses</NavLink>
+            </li>
+            <li>
                {
                 user? "": <NavLink to="/login"> <SlLogin></SlLogin> Login</NavLink>
                }
@@ -77,8 +80,9 @@ const Navbar = () => {
       </div>
       <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-[150px]">
        
-        <li><Link to="/dashboard">Dashboard</Link></li>
-        {user ? (
+        <li><Link to="/dashboard/profile">Dashboard</Link></li>
+<li>        <NavLink to="/alldata"> All courses</NavLink>
+</li>        {user ? (
               <li>
                 <button className="" onClick={handelsingout}>
                 Sign Out

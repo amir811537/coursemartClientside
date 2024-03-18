@@ -14,6 +14,7 @@ import Detailsproduct from "../Components/pages/Detailsproduct";
 import Dashboard from "../Layouts/Dashboard";
 import Profile from "../Components/Dashboard/Profile/Profile";
 import UpdateProfileInfo from "../Components/Dashboard/Profile/UpdateProfileInfo";
+import CartcountBadge from "../Components/Navbar/CartcountBadge";
 
 const router=createBrowserRouter([
     {
@@ -42,6 +43,10 @@ const router=createBrowserRouter([
                 element:<Register></Register>
             },
             {
+path:'/bage',
+element:<CartcountBadge></CartcountBadge>
+            },
+            {
                 path:'/alldata',
                 element:<Alldata></Alldata>,
             },
@@ -64,7 +69,7 @@ const router=createBrowserRouter([
     },
     {
         path:'dashboard',
-        element:<Dashboard></Dashboard>,
+        element:<PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
         children:[
 {
     path:'myCart',

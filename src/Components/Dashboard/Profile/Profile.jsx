@@ -45,7 +45,7 @@ const Profile = () => {
                         <div className="p-2 text-center">
                             <h3 className="text-center text-xl text-gray-900 font-medium leading-8">name</h3>
                             <div className="text-center text-gray-400 text-xs font-semibold">
-                                <p>admin/user</p>
+                                <p>{userData[0].role}</p>
                             </div>
                             <div className="my-3">
                                 <div className="flex items-center mb-2">

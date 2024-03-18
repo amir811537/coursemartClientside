@@ -4,7 +4,7 @@ import { FaUserAlt } from "react-icons/fa";
 import { FaHome } from "react-icons/fa";
 const Dashboard = () => {
     return (
-<div className="flex">
+<div className="relative max-h-screen md:flex">
     {/* dashboard sidebar */}
 <div className="w-64 min-h-full max-h-[100vh] bg-orange-500">
 
@@ -16,7 +16,7 @@ const Dashboard = () => {
           </NavLink>
         </li>
 <li> <NavLink className="text-white" to="/dashboard/myCart"><FaShoppingCart /> My Cart</NavLink> </li>
-<li> <NavLink className="text-white" to="/dashboard/userHome"> <FaHome /> User Home</NavLink> </li>
+<li> <NavLink className="text-white" to="/"> <FaHome /> User Home</NavLink> </li>
 
 
 </ul>

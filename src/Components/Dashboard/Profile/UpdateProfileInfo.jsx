@@ -53,7 +53,8 @@ const onSubmit = async (data) => {
         address: data.address,
         mobile: data.mobile,
         sociallink: data.sociallink,
-        userimg: imageUploadRes.data.data.display_url
+        userimg: imageUploadRes.data.data.display_url,
+        role:"user"
         // Add other fields as needed
         // Assuming you have stored the user's ID in singleProfileInfo._id
       };

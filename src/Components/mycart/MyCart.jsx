@@ -3,8 +3,11 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../Authprovider/Authprovider";
 import MyCartcard from "./MyCartcard";
 import { ImSad } from "react-icons/im";
+// import { useNavigate } from "react-router-dom";
 
 const MyCart = () => {
+    // const navigate = useNavigate();
+
     const [product,setProduct]=useState([]);
     const user=useContext(AuthContext);
     useEffect(()=>{
@@ -13,6 +16,12 @@ const MyCart = () => {
       }
     
     },[user,product])
+
+
+    // const countMybage = () => {
+    //     // Pass user information as state during navigation
+    //     navigate(`/bage`,{ state: product.length });
+    // };
 
     const getProdcut=async()=>{
       
