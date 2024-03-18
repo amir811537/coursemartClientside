@@ -15,6 +15,9 @@ import Dashboard from "../Layouts/Dashboard";
 import Profile from "../Components/Dashboard/Profile/Profile";
 import UpdateProfileInfo from "../Components/Dashboard/Profile/UpdateProfileInfo";
 import CartcountBadge from "../Components/Navbar/CartcountBadge";
+import AdminHome from "../Components/Dashboard/User/AdminHome/AdminHome";
+import ManageItems from "../Components/Dashboard/ManageItem/ManageItems";
+import ManageUser from "../Components/Dashboard/ManageUser/ManageUser";
 
 const router=createBrowserRouter([
     {
@@ -25,10 +28,6 @@ const router=createBrowserRouter([
             {
                 path:'/',
                 element:<Home></Home>
-            },
-            {
-                path: "/AddProduct",
-                element: <PrivateRoute><AddProduct></AddProduct></PrivateRoute>
             },
             {
                 path: "/myCart",
@@ -83,6 +82,23 @@ element:<CartcountBadge></CartcountBadge>
     path:'updateprofileInfo/:id',
     element:<UpdateProfileInfo></UpdateProfileInfo>,
     loader:()=>fetch('http://localhost:5000/profileInfo')
+},
+{
+    path:"adminHome",
+    element:<AdminHome></AdminHome>
+} ,
+
+{
+    path: "AddProduct",
+    element: <AddProduct></AddProduct>
+},
+{
+    path:"ManageItem",
+    element:<ManageItems></ManageItems>
+},
+{
+    path:"ManageUser",
+    element:<ManageUser></ManageUser>
 }
         ]
     }

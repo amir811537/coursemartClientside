@@ -5,7 +5,7 @@ import AOS from "aos";
 import { useEffect } from "react";
 
 const Singlebrand = ({singelbrand}) => {
-console.log("========>",singelbrand)
+// console.log("========>",singelbrand)
   useEffect(() => {
     AOS.init();
   }, []);

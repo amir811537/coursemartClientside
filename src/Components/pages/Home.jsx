@@ -1,5 +1,5 @@
 // import useTheme from "../../darkmode/Darkmode";
-import Brand from "../brandname/Brand";
+// import Brand from "../brandname/Brand";
 import Alldata from "./Alldata";
 import Banner from "./Banner";
 import Extrasection from "./Extrasection";
@@ -18,11 +18,11 @@ const Home = () => {
 
 
     </div>  
-    <div className=" py-9 mt-5">
+    {/* <div className=" py-9 mt-5">
     <h2 className="text-xl md:text-3xl font-bold text-orange-500 lg:text-5xl text-center" >Leading highlighter Brands: Unleash Innovation with our Diverse brand Selection!</h2>
-    </div>
+    </div> */}
      
-    <Brand></Brand>     
+    {/* <Brand></Brand>      */}
 
             
             <div className=" py-8 text-center font-bold  text-xl lg:text-5xl">

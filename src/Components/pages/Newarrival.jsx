@@ -50,7 +50,7 @@ const Newarrival = () => {
               </SwiperSlide>
           ))}
           <div className="flex justify-center py-3">
-          <button className="hover:bg-orange-500  border-orange-500 text-orange-500 text-xl border  hover:text-white rounded-3xl px-6 py-3">show more </button>
+          <button className="hover:bg-orange-500  border-orange-500 text-orange-500 text-xl border  hover:text-white rounded-3xl lg:px-6 lg:py-3 px-3 py-px">show more </button>
 
           </div>
       </Swiper>

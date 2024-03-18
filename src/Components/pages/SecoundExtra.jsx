@@ -15,7 +15,7 @@ const SecondExtra = () => {
           <div className="grid overflow-hidden text-white shadow-xl md:grid-cols-2 bg-blue-600 rounded-xl">
             <aside className="p-8 space-y-4 md:p-16">
               <h2 className="text-2xl font-bold tracking-tight md:text-4xl font-headline">
-                OPEN BOX LAPTOPS
+               ABOUT OUR COMPANY
               </h2>
               <p className="font-medium text-blue-100 md:text-2xl">
                 These items are fresh and unused, though their seals have been
@@ -28,7 +28,7 @@ const SecondExtra = () => {
               <div>
                 <a
                   href="/"
-                  className="bg-white text-blue-600 px-4 py-2 mt-3 rounded-xl"
+                  className="hover:bg-orange-500  border-orange-500 text-orange-500 text-xl border  hover:text-white rounded-3xl lg:px-6 lg:py-3 px-3 py-px"
                 >
                   View More
                 </a>

@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import Singlebrand from "../brandname/Singlebrand";
+// import Singlebrand from "../brandname/Singlebrand";
 import Singelcard from "./Singelcard";
 
 const Singelbranddata = () => {
