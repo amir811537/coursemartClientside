@@ -44,7 +44,7 @@ fetch(`https://electronics-bazar-server.vercel.app/user/${_id}`,{
 })
     }
       })
-console.log(_id)
+// console.log(_id)
   }
 
   return (

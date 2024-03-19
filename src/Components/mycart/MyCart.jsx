@@ -23,11 +23,16 @@ const MyCart = () => {
     //     navigate(`/bage`,{ state: product.length });
     // };
 
+
+    const totalPrice=(productList)=>{
+        return productList.reduce((acc,curr)=>acc+Number(curr?.price),0)
+    }
+
     const getProdcut=async()=>{
       
         
         try {
-            const res=await axios.get(`http://localhost:5000/user/${user?.user?.email}`,)
+            const res=await axios.get(`https://course-mart-serverside.vercel.app/user/${user?.user?.email}`,)
            setProduct(res.data)
             
         } catch (error) {
@@ -35,24 +40,39 @@ const MyCart = () => {
         }
     }
     return (
-        <div className="grid mx-6 gap-5 my-10 grid-cols-1 md:grid-cols-3 lg:grid-cols-2">
+
         
-            {product.length>0? product.map(singelproduct  =><MyCartcard key={singelproduct.ID} singelproduct={singelproduct}></MyCartcard>):<>
+<div>
+<div className="grid mx-6 gap-5 my-10 grid-cols-1 md:grid-cols-3 lg:grid-cols-2">
+        
+        {
+        product.length>0?<>
+        
+        {product.map(singelproduct  =><MyCartcard key={singelproduct.ID} singelproduct={singelproduct}></MyCartcard>)}
+         </>
+        
+        
+        :
+        
+        <>
+        
+        
+        <div className="flex flex-col items-center justify-center mx-auto">
+        
+        <ImSad className="text-5xl text-red-600" />
+        <h1 className="text-center">Sorry No Data Found!</h1>
+            
+            </div>
             
             
-            <div className="flex flex-col items-center justify-center mx-auto">
-            
-            <ImSad className="text-5xl text-red-600" />
-            <h1 className="text-center">Sorry No Data Found!</h1>
-                
-                </div>
-                
-                
-                </>
-   
+            </>
+
 }
 
-        </div>
+<h1>{}</h1>
+<button className="hover:bg-green-500 bg-green-200 px-6 py-3 hover:text-white " >total Pay Amount ₹{totalPrice(product)}</button>
+    </div>
+</div>
     );
 };
 

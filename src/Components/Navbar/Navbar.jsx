@@ -4,7 +4,6 @@ import { AuthContext } from "../../Authprovider/Authprovider";
 import { AiFillHome } from 'react-icons/ai';
 import { SlLogin } from 'react-icons/sl';
 import { BsCartCheck } from 'react-icons/bs';
-import { MdAddBusiness } from 'react-icons/md';
 import { CiSearch } from "react-icons/ci";
 import { MdOutlineShoppingCart } from "react-icons/md";
 import CartcountBadge from "./CartcountBadge";
@@ -31,14 +30,15 @@ const Navbar = () => {
             <li>
                 <NavLink to="/"> <AiFillHome></AiFillHome> Home</NavLink>
             </li>
-            <li>
-                <NavLink to="/AddProduct"> <MdAddBusiness></MdAddBusiness> Add Product</NavLink>
-            </li>
+
             <li>
                 <NavLink to="/myCart"> <BsCartCheck></BsCartCheck> My Cart</NavLink>
             </li>
             <li>
                 <NavLink to="/alldata"> <BsCartCheck></BsCartCheck>All courses</NavLink>
+            </li>
+            <li>
+                <NavLink to="/dashboard/dashboardHome"> <AiFillHome></AiFillHome>Dashboard</NavLink>
             </li>
             <li>
                {
@@ -80,7 +80,7 @@ const Navbar = () => {
       </div>
       <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-[150px]">
        
-        <li><Link to="/dashboard/adminHome">Dashboard</Link></li>
+        <li><Link to="/dashboard/dashboardHome">Dashboard</Link></li>
 <li>        <NavLink to="/alldata"> All courses</NavLink>
 </li>        {user ? (
               <li>

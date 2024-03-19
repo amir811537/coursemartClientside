@@ -22,7 +22,7 @@ const Login = () => {
       };
 
       axios
-        .post(`http://localhost:5000/profileInfo`, userData)
+        .post(`https://course-mart-serverside.vercel.app/profileInfo`, userData)
         .then(() => {
           Swal.fire({
             icon: "success",
@@ -72,7 +72,7 @@ const Login = () => {
         };
   
         axios
-          .post(`http://localhost:5000/profileInfo`, userData)
+          .post(`https://course-mart-serverside.vercel.app/profileInfo`, userData)
           .then(() => {
             Swal.fire({
               icon: "success",
@@ -80,7 +80,7 @@ const Login = () => {
               showConfirmButton: false,
               timer: 3000,
             });
-            navigate(location?.state ? location.state : "/");
+            navigate("/");
           })
           .catch((error) => {
             console.error("Error posting user data:", error);

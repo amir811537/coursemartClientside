@@ -1,15 +1,18 @@
 import axios from "axios";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 const AddProduct = () => {
   const { register, handleSubmit, formState: { errors } } = useForm();
+  const navigate = useNavigate();
 
   const onSubmit = (data) => {
     axios
-      .post("http://localhost:5000/courses", data) 
+      .post("https://course-mart-serverside.vercel.app/courses", data) 
       .then((res) => {
         console.log("add====>", res.data);
         if (res.data.insertedId) {
+          navigate('/alldata')
           Swal.fire(
             'Good job!',
             'Course added successfully!',

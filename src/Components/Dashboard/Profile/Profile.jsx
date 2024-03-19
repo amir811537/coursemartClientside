@@ -13,7 +13,7 @@ const Profile = () => {
 
     const userInfo = async () => {
         try {
-            const res = await axios.get(`http://localhost:5000/profileInfo/${user?.email}`);
+            const res = await axios.get(`https://course-mart-serverside.vercel.app/profileInfo/${user?.email}`);
             setUserData(res.data);
             setLoading(false);
         } catch (error) {

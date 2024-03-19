@@ -1,4 +1,4 @@
-import {  NavLink, Outlet } from "react-router-dom";
+import {  Link, NavLink, Outlet } from "react-router-dom";
 import { FaShoppingCart } from "react-icons/fa";
 import { FaUserAlt } from "react-icons/fa";
 import { FaHome } from "react-icons/fa";
@@ -9,13 +9,21 @@ import useAdmin from "../Hooks/useAdmin";
 import { useContext } from "react";
 import { AuthContext } from "../Authprovider/Authprovider";
 const Dashboard = () => {
-// todo : get is admin value form the database 
-    // const isAdmin1=true;
-    const [isAdmin,isAdminLoading]=useAdmin();
-//     console.log(isAdmin)
-//     const {user}=useContext(AuthContext)
-// console.log("",user)
 
+    const {user,logOut}=useContext(AuthContext);
+
+
+    const [isAdmin,isAdminLoading]=useAdmin();
+
+    const handelsingout = () => {
+        logOut()
+            .then((result) => {
+                console.log(result);
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+    };
 
 if(isAdminLoading){
     return <p> loading ............</p>
@@ -79,7 +87,18 @@ if(isAdminLoading){
     <FaHome className="text-2xl text-sky-300" />
   </div>
 <div>
-    <button className="flex mx-auto justify-end items-center text-white"> Sing Out</button>
+
+{user ? (
+              
+                <button className="flex mx-auto justify-end items-center text-white" onClick={handelsingout}>
+                Sign Out
+              </button>
+            
+            ) : (
+             <Link to="/login">
+             <button className="flex mx-auto justify-end items-center text-white">Login</button>
+           </Link>
+            )}
 </div>
 </div>
 <div className="flex-1">

@@ -18,6 +18,7 @@ import CartcountBadge from "../Components/Navbar/CartcountBadge";
 import AdminHome from "../Components/Dashboard/User/AdminHome/AdminHome";
 import ManageItems from "../Components/Dashboard/ManageItem/ManageItems";
 import ManageUser from "../Components/Dashboard/ManageUser/ManageUser";
+import DashboardHome from "../Layouts/DashboardHome";
 
 const router=createBrowserRouter([
     {
@@ -52,7 +53,7 @@ element:<CartcountBadge></CartcountBadge>
             {
                 path:'/updateproduct/:id',
                 element:<PrivateRoute><Updateproduct></Updateproduct></PrivateRoute>,
-                loader:({params})=>fetch(`https://electronics-bazar-server.vercel.app/productsbyid/${params.id}`)
+                loader:({params})=>fetch(`https://course-mart-serverside.vercel.app/courses/${params.id}`)
             },
             {
                 path:'/singelbranddata/:brand',
@@ -61,7 +62,7 @@ element:<CartcountBadge></CartcountBadge>
             {
                 path:'/products/:id',
                 element:<PrivateRoute><Detailsproduct></Detailsproduct></PrivateRoute>,
-                loader:()=>fetch('http://localhost:5000/courses')
+                loader:()=>fetch('https://course-mart-serverside.vercel.app/courses')
             },
             
         ]
@@ -81,7 +82,7 @@ element:<CartcountBadge></CartcountBadge>
 {
     path:'updateprofileInfo/:id',
     element:<UpdateProfileInfo></UpdateProfileInfo>,
-    loader:()=>fetch('http://localhost:5000/profileInfo')
+    loader:()=>fetch('https://course-mart-serverside.vercel.app/profileInfo')
 },
 {
     path:"adminHome",
@@ -99,6 +100,10 @@ element:<CartcountBadge></CartcountBadge>
 {
     path:"ManageUser",
     element:<ManageUser></ManageUser>
+},
+{
+    path:'dashboardHome',
+    element:<DashboardHome></DashboardHome>,
 }
         ]
     }

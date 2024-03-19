@@ -7,7 +7,7 @@ const ManageUser = () => {
   const { data: profileInfo = [], refetch } = useQuery({
     queryKey: ["profileInfo"],
     queryFn: async () => {
-      const res = await axios.get("http://localhost:5000/profileInfo");
+      const res = await axios.get("https://course-mart-serverside.vercel.app/profileInfo");
       return res.data;
     },
   });
@@ -29,7 +29,7 @@ const ManageUser = () => {
         //     'success'
         //   )
 
-        fetch(`http://localhost:5000/profileInfo/${profile._id}`, {
+        fetch(`https://course-mart-serverside.vercel.app/profileInfo/${profile._id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())
@@ -58,7 +58,7 @@ const ManageUser = () => {
   
     if (result.isConfirmed) {
       try {
-        const res = await axios.patch(`http://localhost:5000/profileInfo/admin/${profile._id}`);
+        const res = await axios.patch(`https://course-mart-serverside.vercel.app/profileInfo/admin/${profile._id}`);
         console.log(res.data);
         if (res.data.modifiedCount > 0) {
             refetch(); 

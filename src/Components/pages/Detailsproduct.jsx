@@ -29,8 +29,8 @@ const Detailsproduct = () => {
   }
   console.log("================>",payload)
   try {
-    const response=await axios.post('http://localhost:5000/user',payload);
-    console.log(response?.data)
+    const response=await axios.post('https://course-mart-serverside.vercel.app/user',payload);
+    // console.log(response?.data)
     if(response?.data?.insertedId){
       Swal.fire(
         'Good job!',
@@ -111,7 +111,7 @@ const Detailsproduct = () => {
             <nav className="flex gap-4 sm:block sm:space-y-1 md:space-y-2">
               <div className="py-2">
                 <Link
-                  to="/mycart"
+                  to="/alldata"
                   onClick={() => handeladdtocart(singledata)}
                   className=" text-sm  bg-orange-400 hover:bg-orange-700 text-white
                   "
