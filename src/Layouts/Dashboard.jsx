@@ -5,10 +5,21 @@ import { FaHome } from "react-icons/fa";
 import { FcAddImage } from "react-icons/fc";
 import { TiSpanner } from "react-icons/ti";
 import { FaUserEdit } from "react-icons/fa";
+import useAdmin from "../Hooks/useAdmin";
+import { useContext } from "react";
+import { AuthContext } from "../Authprovider/Authprovider";
 const Dashboard = () => {
 // todo : get is admin value form the database 
-    const isAdmin=true;
+    // const isAdmin1=true;
+    const [isAdmin,isAdminLoading]=useAdmin();
+//     console.log(isAdmin)
+//     const {user}=useContext(AuthContext)
+// console.log("",user)
 
+
+if(isAdminLoading){
+    return <p> loading ............</p>
+}
 
     return (
 <div className="relative max-h-screen md:flex">
@@ -41,14 +52,14 @@ const Dashboard = () => {
         </li>
     <li> 
         
-        <NavLink className="text-white" to="/dashboard/ManageUser"><FaUserEdit />Manage Usere</NavLink> 
+        <NavLink className="text-white" to="/dashboard/ManageUser"><FaUserEdit />Manage Users</NavLink> 
         
         
         </li>
 <li> <NavLink className="text-white" to="/dashboard/adminHome"> <FaHome /> Admin Home</NavLink> </li>
     
     
-       </>:
+       </> :
     
     
     
